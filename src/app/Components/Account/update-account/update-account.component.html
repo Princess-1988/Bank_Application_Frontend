@@ -1,0 +1,66 @@
+<app-app-header [isUserLoggedIn]="true"></app-app-header>
+<h2>UPDATE ACCOUNT</h2>
+
+<div class="container mt-5">
+
+    <form #updAct="ngForm" (ngSubmit)="updateAccount()">
+        <div class="form-group mb-3">
+            <label for="customerId" class="form-label">Customer Id</label>        
+            <input class="form-control" id="customerId" name="customerId" required ngModel #custId="ngModel" [(ngModel)]="account.customerId" [disabled]="true">
+            <span *ngIf="custId.errors?.['required'] && custId.touched" class="text-danger">Customer Id is required</span>
+        </div>
+        <div class="form-group mb-3">
+            <label for="customerName" class="form-label">Customer Name</label>
+            <input type="text" class="form-control" id="customerName" name="customerName" minlength="2" required ngModel #custName="ngModel" [(ngModel)]="account.customerName">
+            <span *ngIf="custName.errors?.['required'] && custName.touched" class="text-danger">Customer Name is required &nbsp;&nbsp;</span>
+            <span *ngIf="custName.errors?.['minlength'] && custName.touched" class="text-danger">Customer Name is minimum 2 letters &nbsp;&nbsp;</span>
+        
+        </div>
+        <div class="form-group mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required ngModel #emailVal="ngModel" [(ngModel)]="account.email">
+            <span *ngIf="emailVal.errors?.['required'] && emailVal.touched" class="text-danger">Email is required &nbsp;&nbsp;</span>
+            <span *ngIf="emailVal.errors?.['pattern'] && emailVal.touched" class="text-danger">Invalid Email Id &nbsp;&nbsp; </span>
+        </div>
+        <div class="form-group mb-3">
+            <label for="contactNumber" class="form-label">Contact Number</label>
+            <input  class="form-control" id="contactNumber" name="mobile" required minlength="12" maxlength="12" pattern="[1-9]{1}[0-9]{11}" ngModel #mobVal="ngModel" [(ngModel)]="account.mobile">
+            <span *ngIf="mobVal.errors?.['required'] && mobVal.touched" class="text-danger">Contact Number is required  &nbsp; &nbsp;</span>
+            <span *ngIf="mobVal.errors?.['minlength'] && mobVal.touched" class="text-danger">Contact Number length is 12  &nbsp;&nbsp; </span>
+            <span *ngIf="mobVal.errors?.['maxlength'] && mobVal.touched" class="text-danger">Contact Number length is 12  &nbsp; &nbsp;</span>
+            <span *ngIf="mobVal.errors?.['pattern'] && mobVal.touched" class="text-danger">Invalid Mobile number</span>
+        </div>
+        <div class="form-group mb-3">
+            <label for="address" class="form-label">Contact Address</label>
+            <input type="text" class="form-control" id="address" name="customerAddress" required ngModel #addVal="ngModel" [(ngModel)]="account.customerAddress">
+            <span *ngIf="addVal.errors?.['required'] && addVal.touched" class="text-danger">Address is required</span>
+        </div>
+        <div class="form-group mb-3">
+            <label for="zipCode" class="form-label">Zip Code</label>
+            <input  class="form-control" id="zipCode" name="customerZip"  required minlength="6" maxlength="6"  ngModel #zipVal="ngModel" [(ngModel)]="account.customerZip">
+            <span *ngIf="zipVal.errors?.['required'] && zipVal.touched" class="text-danger">Pin Code is required &nbsp;&nbsp;</span>
+            <span *ngIf="zipVal.errors?.['minlength'] && zipVal.touched" class="text-danger">Pin Code length is 6 &nbsp;&nbsp;</span>
+            <span *ngIf="zipVal.errors?.['maxlength'] && zipVal.touched" class="text-danger">Pin Codelength is 6</span>
+           
+        </div>
+        <div class="form-group mb-3">
+            <label for="dateOfBirth" class="form-label">Date Of Birth</label>
+            <input type="date" class="form-control" id="dateOfBirth" name="customerDOB" required ngModel #dobVal="ngModel" [(ngModel)]="account.customerDOB" [disabled]="true">
+            <span *ngIf="dobVal.errors?.['required'] && dobVal.touched" class="text-danger">Date of Birth is required</span>
+        </div>
+        <div class="form-group mb-3">
+            <label for="accountNumber" class="form-label">Account Number</label>
+            <input  class="form-control" id="accountNumber" name="accountNumber"  minlength="12" maxlength="12" required ngModel #actNumVal="ngModel" [(ngModel)]="account.accountNumber" [disabled]="true">
+            <span *ngIf="actNumVal.errors?.['required'] && actNumVal.touched" class="text-danger">Account Number is required &nbsp;&nbsp;</span>
+            <span *ngIf="actNumVal.errors?.['minlength'] && actNumVal.touched" class="text-danger">Account Number should be of length 12 &nbsp;&nbsp;</span>
+            <span *ngIf="actNumVal.errors?.['maxlength'] && actNumVal.touched" class="text-danger">Account Number should be of length 12 &nbsp;&nbsp;</span>
+        </div>
+        <div class="form-group mb-3">
+            <label for="balance" class="form-label">Account Balance</label>
+            <input  class="form-control" id="balance" name="balance" min="0"  required ngModel #actBal="ngModel" [(ngModel)]="account.balance" [disabled]="true">
+            <span *ngIf="actBal.errors?.['required'] && actBal.touched" class="text-danger">Account Balance is required</span>
+            <span *ngIf="actBal.errors?.['min'] && actBal.touched" class="text-danger">Positive number is required</span>
+        </div>
+    <button type="submit" class="btn btn-primary" [disabled]="updAct.invalid">UPDATE ACCOUNT</button>
+</form>
+</div>

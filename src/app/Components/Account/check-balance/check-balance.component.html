@@ -1,0 +1,27 @@
+<app-app-header [isUserLoggedIn]="true"></app-app-header>
+<h2>ACCOUNT BALANCE</h2>
+<form #forCheckBalance = "ngForm" (ngSubmit)="checkBalance(forCheckBalance.value)" novalidate>
+  <div class="mb-3">
+    <label>Enter the Customer ID</label>
+    <div class="input-group">
+      <input name="Id" type="number" class="form-control" required min="1" ngModel #custId="ngModel" (click)="reload()">
+    </div>
+    <span *ngIf="custId.errors?.['required'] && custId.touched" class="text-danger">Customer Id is required</span>
+       
+  </div>
+  <div class="mb-3">
+      <button [disabled]="forCheckBalance.invalid" class="btn btn-primary" type="submit">CHECK BALANCE </button>
+  </div>  
+</form> 
+
+
+<div *ngIf="submitted">
+    <br><br>
+  
+  <h3>Account Balance of Customer ID :<b>{{forCheckBalance.value.Id}}</b></h3><br>
+  
+  <div class="card-body">
+    <h5 class="card-title">{{balance}}</h5>    
+</div>
+</div>
+

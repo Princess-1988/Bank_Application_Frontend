@@ -1,0 +1,34 @@
+<app-app-header [isUserLoggedIn]="true"></app-app-header>
+<h1>FUND TRANSFER---DEPOSIT</h1>
+<form #depositDetails = "ngForm" (ngSubmit)="depositAmount(depositDetails.value)" novalidate>
+
+
+    <div class="mb-3">
+        <label for="fromAccount" class="form-label"> Depositer Account Number</label>
+        <div class="input-group">
+        <input  class="form-control"  name="fromAccount" maxlength="12" minlength="12" required ngModel #frmAccount="ngModel" >
+        </div>
+        <span *ngIf="frmAccount.errors?.['required'] && frmAccount.touched" class="text-danger">Depositer Account Number is required</span>
+        <span *ngIf="frmAccount.errors?.['minlength'] && frmAccount.touched" class="text-danger">Depositer Account Number should be of length 12</span>  
+        <span *ngIf="frmAccount.errors?.['maxlength'] && frmAccount.touched" class="text-danger">Depositer Account Number should be of length 12</span>  
+    </div>
+
+    <div class="mb-3">
+        <label for="toAccount" class="form-label"> Borrower Account Number</label>
+        <input  class="form-control" id="toAccount" name="toAccount" minlength="12" maxlength="12" required ngModel #toAct ="ngModel" >
+        <span *ngIf="toAct.errors?.['required'] && toAct.touched" class="text-danger">Borrower Account Number is required</span>
+        <span *ngIf="toAct.errors?.['minlength'] && toAct.touched" class="text-danger">Borrower Account Number should be of length 12</span>  
+        <span *ngIf="toAct.errors?.['maxlength'] && toAct.touched" class="text-danger">Borrower Account Number should be of length 12</span>  
+    </div>
+
+    <div class="mb-3">
+        <label for="fundAmount" class="form-label"> Fund Amount</label>
+        <input type="number"  class="form-control" id="fundAmount" name="fundAmount" min="1" required ngModel #fundAmt="ngModel" >
+        <span *ngIf="fundAmt.errors?.['required'] && fundAmt.touched" class="text-danger">Fund Amount is required </span>
+        <span *ngIf="fundAmt.errors?.['min'] && fundAmt.touched" class="text-danger">Fund Amount is a positive value </span>    
+    </div>
+    <div class="mb-3">
+    <button type="submit" class="btn btn-primary" [disabled]="depositDetails.invalid" >DEPOSIT FUND</button>
+</div>
+</form>
+

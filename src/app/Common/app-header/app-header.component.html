@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary" *ngIf="isUserLoggedIn">
+  <div class="container-fluid">
+  <a class="navbar-brand" href="/home"><b>BANKING MANAGEMENT</b></a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="main_nav">
+    <ul class="navbar-nav">
+      <li class="nav-item active"> <a class="nav-link" href="/home">Home </a> </li>
+      <li class="nav-item dropdown" id="myDropdown" *ngIf="isAdmin && isUserLoggedIn">
+        <a class="nav-link dropdown-toggle" href="/home" data-bs-toggle="dropdown"> ACCOUNT </a>
+        <ul class="dropdown-menu">
+          <li> <a class="dropdown-item" routerLink="/home/createNewAccount"> Create a New Account </a></li>
+          <li> <a class="dropdown-item" routerLink="/home/getAllAccounts"> Get all Accounts </a></li>
+          <li> <a class="dropdown-item" href="#"> Search Account >></a>
+            <ul class="submenu dropdown-menu">
+              <li><a class="dropdown-item" routerLink="/home/getAccountDetailsByAccountNumber">By Customer Account</a></li>
+              <li><a class="dropdown-item" routerLink="/home/checkBalanceById">Check Balance</a></li>
+              <li><a class="dropdown-item" routerLink="/home/getAccountDetailsByBalance">By Balance</a></li>         
+            </ul>
+          </li>          
+        </ul>
+      </li>
+      <li class="nav-item dropdown" id="myDropdown" *ngIf="isUser && isUserLoggedIn">
+        <a class="nav-link dropdown-toggle" href="/home" data-bs-toggle="dropdown">  Transaction </a>
+        <ul class="dropdown-menu">
+          <li> <a class="dropdown-item" href="/home">Create a Transaction</a>
+            <ul class="submenu dropdown-menu">
+              <li><a class="dropdown-item" routerLink="/home/depositNewTransaction">Deposit</a></li>
+              <li><a class="dropdown-item" routerLink="/home/withdrawNewTransaction">Withdrawal</a></li>                   
+            </ul>
+          </li>
+          <li> <a class="dropdown-item" routerLink="/home/getAllTransactions"> View All Transactions </a></li>
+          <li> <a class="dropdown-item" href="/home">Search a Transaction >></a>
+            <ul class="submenu dropdown-menu">
+              <li><a class="dropdown-item" routerLink="/home/getTransactionByCustomerId">By Customer Id</a></li>
+              <li><a class="dropdown-item" routerLink="/home/getTransactionByFundTransaction">By Transaction Amount</a></li>                   
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item" style="float: right; width: 100%;">
+      <a class="nav-link" href="">Logout </a> 
+    </li>
+    </ul>
+  </div>  
+    
+  <!-- navbar-collapse.// -->
+  </div>
+  <!-- container-fluid.// -->
+  </nav>

@@ -1,0 +1,57 @@
+<app-app-header [isUserLoggedIn]="true"></app-app-header>
+<h2>SEARCH BY ACCOUNT NUMBER</h2>
+
+<form #formByActNum = "ngForm" (ngSubmit)="getAccountDetailsByAccountNumber(formByActNum.value)" novalidate>
+  <div class="mb-3">
+    <label>Enter the Account Number</label>
+    <div class="input-group">
+      <input name="accountNum" class="form-control" required minlength="12" maxlength="12" ngModel #accountNum="ngModel">
+    </div>
+    <span *ngIf="accountNum.errors?.['required'] && accountNum.touched" class="text-danger">Account Number is required</span>
+    <span *ngIf="accountNum.errors?.['minlength'] && accountNum.touched" class="text-danger">Account Number should be of length 12</span>  
+    <span *ngIf="accountNum.errors?.['maxlength'] && accountNum.touched" class="text-danger">Account Number should be of length 12</span>  
+  </div>
+  <div class="mb-3">
+      <button [disabled]="formByActNum.invalid" class="btn btn-primary" type="submit">DETAILS BY ACCOUNT NUMBERS</button>
+  </div>  
+</form> 
+
+
+<div *ngIf="fetching ; else noData">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+              <th scope="col">Customer Id</th>
+              <th scope="col">Customer Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Contact Number</th>
+              <th scope="col">Address</th>
+              <th scope="col">Zip Code</th>
+              <th scope="col">Date Of Birth</th>
+              <th scope="col">Account Number</th>
+              <th scope="col">Balance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{account.customerId}}</th>
+              <td>{{account.customerName}}</td>
+              <td>{{account.email}}</td>
+              <td>{{account.mobile}}</td>
+              <td>{{account.customerAddress}}</td>
+              <td>{{account.customerZip}}</td>
+              <td>{{account.customerDOB}}</td>
+              <td>{{account.accountNumber}}</td>
+              <td>{{account.balance}}</td>
+             
+            </tr>
+           
+          </tbody>
+      </table>
+</div>
+
+<ng-template #noData>
+<div *ngIf="errorMsg">
+<p>Account Number <b>{{account.accountNumber}}</b> does not exist </p>
+</div>
+</ng-template>

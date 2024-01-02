@@ -1,0 +1,49 @@
+<app-app-header [isUserLoggedIn]="true"></app-app-header>
+<h2>VIEW TRANSACTION HISTORY BY TRANSACTION AMOUNT</h2>
+
+<form #tranByTransferAmount= "ngForm" (ngSubmit)="getTransactionDetailsByFundAmount(tranByTransferAmount.value)" novalidate>
+  <div class="mb-3">
+    <label>Enter the Transaction Amount</label>
+    <div class="input-group">
+      <input type="number" name="amt" class="form-control" required min="1" ngModel #fundAmount="ngModel" (click)="reload()">
+    </div>
+    <span *ngIf="fundAmount.errors?.['required'] && fundAmount.touched" class="text-danger">Transaction Fund Amount is required</span>
+    <span *ngIf="fundAmount.errors?.['min'] && fundAmount.touched" class="text-danger">Transaction Fund Amount is a positive value</span>
+  </div>
+  <div class="mb-3">
+      <button [disabled]="tranByTransferAmount.invalid" class="btn btn-primary" type="submit">DETAILS BY TRANSACTION AMOUNT</button>
+  </div>  
+</form> 
+
+<div *ngIf="fetching">
+   <table class="table table-striped">
+    <thead>
+        <tr>
+          <th scope="col">Transaction Id</th>
+          <th scope="col">Transaction Amount</th>
+          <th scope="col">Transaction Date</th>          
+          <th scope="col">Transaction Type </th>
+          <th scope="col">Customer Id</th>
+          <th scope="col">Depositor Account</th>
+          <th scope="col">Borrower Account</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transaction of transactions">
+          <th scope="row">{{transaction.transactionId}}</th>
+          <td>{{transaction.transactionAmount}}</td>
+          <td>{{transaction.transactionDate}}</td>
+          <td>{{transaction.transactionType}}</td>
+          <td>{{transaction.caccount.customerId}}</td>
+          <td>{{transaction.faccount.accountNumber}}</td>
+          <td>{{transaction.taccount.accountNumber}}</td>       
+          
+        </tr>
+       
+      </tbody>
+  </table>
+</div>
+
+<div *ngif="!noCustomer" >
+  <h3>No transactions done</h3>
+</div>

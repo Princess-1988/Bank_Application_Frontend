@@ -1,0 +1,67 @@
+<app-app-header ></app-app-header>
+<!-- Section: Design Block -->
+<section class="">
+    <!-- Jumbotron -->
+    <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
+      <div class="container">
+        <div class="row gx-lg-5 align-items-center">
+          <div class="col-lg-6 mb-5 mb-lg-0">
+            <h1 class="my-5 display-3 fw-bold ls-tight">
+              BANKING MANAGEMENT <br />
+              <span class="text-primary">APPLICATION</span>
+            </h1>
+            <p style="color: hsl(217, 10%, 50.8%)">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Eveniet, itaque accusantium odio, soluta, corrupti aliquam
+              quibusdam tempora at cupiditate quis eum maiores libero
+              veritatis? Dicta facilis sint aliquid ipsum atque?
+            </p>
+          </div>
+  
+          <div class="col-lg-6 mb-5 mb-lg-0">
+            <div class="card">
+              <div class="card-body py-5 px-md-5">
+               
+               <form #loginDetails="ngForm" (ngSubmit)="login(loginDetails.value)">
+               <!-- <form #loginDetails="ngForm" (ngSubmit)="login(loginDetails)">-->
+                  <!-- 2 column grid layout with text inputs for the first and last names -->
+                  
+                  <div class="form-outline mb-4">
+                    <div class="input-group">
+                    <input type="text" class="form-control" id="userName" name="usernameOrEmail" required ngModel #userNam="ngModel">
+                   </div>  
+                    <!--<input type="text" id="form3Example1" class="form-control" />-->
+                        <label for="userName" class="form-label">User Name</label><br>
+                        <span *ngIf="userNam.errors?.['required'] && userNam.touched" class="text-danger">UserName is required</span>
+                    </div>
+                 
+                   <!-- Password input -->
+                   <div class="form-outline mb-4">
+                    <input type="password" class="form-control" id="password" name="password" required ngModel #passwordVal="ngModel">
+                    <label class="form-label" for="form3Example4">Password</label> <br>
+                    <span *ngIf="passwordVal.errors?.['required'] && passwordVal.touched" class="text-danger">Password is required</span>
+                  </div>
+                  
+                  <!-- Submit button 
+                  <a type="submit" class="btn btn-secondary" (click)="onLoginClick()">Login</a>&nbsp;
+                        
+                  <br>
+                  <h6>Not Yet Registered</h6>
+                  <a type="button" class="btn btn-secondary" routerLink="/SignUp" >Sign In</a>&nbsp;-->
+               
+                   <!--SignIn and Login-->
+                   <button type="submit" class="btn btn-primary"  [disabled]="loginDetails.invalid">LOGIN IN</button>&nbsp;
+                   <br>
+                   <h6>Not Yet Registered</h6>
+                   <button type="submit" class="btn btn-primary" routerLink="/SignUp" >REGISTER</button>&nbsp;
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Jumbotron -->
+  </section>
+  <!-- Section: Design Block -->
+  <router-outlet></router-outlet>

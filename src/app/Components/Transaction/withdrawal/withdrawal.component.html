@@ -1,0 +1,25 @@
+<app-app-header [isUserLoggedIn]="true"></app-app-header>
+<h1>FUND TRANSFER---WITHDRAWAL</h1>
+<form #depositDetails = "ngForm" (ngSubmit)="withdrawAmount(depositDetails.value)" novalidate>
+
+
+    <div class="form-group mb-3">
+        <label for="fromAccount" class="form-label"> Withdraw Account Number</label>
+        <div class="input-group">
+        <input  class="form-control" id="fromAccount" name="fromAccount"  maxlength="12" minlength="12" required ngModel #widAct="ngModel" >
+        </div>
+        <span *ngIf="widAct.errors?.['required'] && widAct.touched" class="text-danger">Withdrawer Account Number is required</span>
+        <span *ngIf="widAct.errors?.['minlength'] && widAct.touched" class="text-danger">Withdrawer Account Number should be of length 12</span>  
+        <span *ngIf="widAct.errors?.['maxlength'] && widAct.touched" class="text-danger">Withdrawer Account Number should be of length 12</span>  
+    </div>
+    
+    <div class="form-group mb-3">
+        <label for="fundAmount" class="form-label"> Fund Amount</label>
+        <input  type="number" class="form-control" id="fundAmount" name="fundAmount"  required  min="1" ngModel #witAmt="ngModel">
+        <span *ngIf="witAmt.errors?.['required'] && witAmt.touched" class="text-danger">Withdraw Amount is required</span>
+        <span *ngIf="witAmt.errors?.['min'] && witAmt.touched" class="text-danger">Withdraw Amount is a positive value</span>
+    </div>
+   
+    <button type="submit" class="btn btn-primary" [disabled]="depositDetails.invalid" >WITHDRAW AMOUNT</button>
+</form>
+

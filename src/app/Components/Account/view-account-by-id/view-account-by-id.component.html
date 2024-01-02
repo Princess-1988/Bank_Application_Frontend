@@ -1,0 +1,38 @@
+<app-app-header [isUserLoggedIn]="true"></app-app-header>
+<h2>VIEW ACCOUNT DETAILS OF {{account.customerId}}</h2>
+<h4>CUSTOMER NAME {{account.customerName}}</h4>
+
+<table class="table table-striped">
+  <thead>
+      <tr>
+        <th scope="col">Customer Id</th>
+        <th scope="col">Customer Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Contact Number</th>
+        <th scope="col">Address</th>
+        <th scope="col">Zip Code</th>
+        <th scope="col">Date Of Birth</th>
+        <th scope="col">Account Number</th>
+        <th scope="col">Balance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">{{account.customerId}}</th>
+        <td>{{account.customerName}}</td>
+        <td>{{account.email}}</td>
+        <td>{{account.mobile}}</td>
+        <td>{{account.customerAddress}}</td>
+        <td>{{account.customerZip}}</td>
+        <td>{{account.customerDOB}}</td>
+        <td>{{account.accountNumber}}</td>
+        <td>{{account.balance}}</td>
+       
+      </tr>
+     
+    </tbody>
+</table>
+
+<div class="container-fluid" >
+  <button class="btn btn-primary"(click)="viewPage()">Get All Accounts</button>
+</div>

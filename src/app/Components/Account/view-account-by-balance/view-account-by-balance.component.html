@@ -1,0 +1,50 @@
+<app-app-header [isUserLoggedIn]="true"></app-app-header>
+<h2>SEARCH ACCOUNTS BY BALANCE</h2>
+
+<form #formbyAmount = "ngForm" (ngSubmit)="getAccoutsByBalance(formbyAmount.value)" novalidate>
+    <div class="mb-3">
+      <label>Enter the amount</label>
+      <div class="input-group">
+        <input type="number" name="amount" class="form-control" required min="0" minlength="1" ngModel #amount="ngModel">
+      </div>
+      <span *ngIf="amount.errors?.['required'] && amount.touched" class="text-danger">Please enter a positive non-zero amount value</span>
+      <span *ngIf="amount.errors?.['min'] && amount.touched" class="text-danger">Please enter a positive non-zero amount value</span>
+      </div>
+    <div class="mb-3">
+        <button [disabled]="formbyAmount.invalid" class="btn btn-primary" type="submit">CHECK BY BALANCE AMOUNT</button>
+    </div>  
+</form> 
+
+
+<div *ngIf="fetching">
+<table class="table table-striped">
+    <thead>
+        <tr>
+          <th scope="col">Customer Id</th>
+          <th scope="col">Customer Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Contact Number</th>
+          <th scope="col">Address</th>
+          <th scope="col">Zip Code</th>
+          <th scope="col">Date Of Birth</th>
+          <th scope="col">Account Number</th>
+          <th scope="col">Balance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let account of accounts">
+          <th scope="row">{{account.customerId}}</th>
+          <td>{{account.customerName}}</td>
+          <td>{{account.email}}</td>
+          <td>{{account.mobile}}</td>
+          <td>{{account.customerAddress}}</td>
+          <td>{{account.customerZip}}</td>
+          <td>{{account.customerDOB}}</td>
+          <td>{{account.accountNumber}}</td>
+          <td>{{account.balance}}</td>
+        </tr>
+       
+      </tbody>
+  </table>
+</div>
+
